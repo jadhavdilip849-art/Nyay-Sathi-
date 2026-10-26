@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>न्याय साथी (Nyaya Sathi) - AI Legal Information & Assistance</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Legal Disclaimer Banner -->
+  <div class="disclaimer-banner">
+    <span>⚖️</span>
+    <span><strong>महत्त्वाची नोंद / Legal Notice:</strong> न्याय साथी हे एक AI कायदेशीर माहिती सहाय्यक आहे, हे वकील किंवा न्यायालय नाही. Nyaya Sathi is an AI legal-information assistant and does not constitute formal legal counsel.</span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">न्या</div>
+        <div class="brand-text">
+          <h1>न्याय साथी (Nyaya Sathi)</h1>
+          <p id="ui-tagline">आपले हक्क जाणून घ्या. कायदा समजून घ्या. पुढचे पाऊल उचला.</p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <div class="lang-picker">
+          <select id="language-select" aria-label="Select Language">
+            <option value="mr-IN" selected>मराठी (Marathi)</option>
+            <option value="hi-IN">हिन्दी (Hindi)</option>
+            <option value="en-IN">English (India)</option>
+          </select>
+        </div>
+        <button class="contrast-btn" onclick="toggleContrast()" title="High Contrast Mode">🌓 Contrast</button>
+        <button class="font-btn" onclick="adjustFontSize(-1)" title="Decrease Font">A-</button>
+        <button class="font-btn" onclick="adjustFontSize(1)" title="Increase Font">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <button class="nav-tab active" data-tab="rights-tab">⚖️ हक्क जाणून घ्या (Rights)</button>
+      <button class="nav-tab" data-tab="document-tab">📄 कागदपत्र स्पष्टीकरण (Document)</button>
+      <button class="nav-tab" data-tab="complaint-tab">✍️ तक्रार मसुदा (Complaint)</button>
+      <button class="nav-tab" data-tab="legalaid-tab">🏛️ मोफत विधी सेवा (Legal Aid)</button>
+      <button class="nav-tab demo-tab-highlight" data-tab="demos-tab">🚀 थेट प्रात्यक्षिक (Live Demos)</button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main>
+
+    <!-- TAB 1: Understand My Rights & Voice Assistant -->
+    <section id="rights-tab" class="tab-content active">
+      <div class="hero-card">
+        <h2 class="hero-title" id="ui-hero-title">आपल्या हक्कांचे संरक्षण, आपल्या मातृभाषेत</h2>
+        <p class="hero-subtitle" id="ui-hero-sub">
+          कोणत्याही गुंतागुंतीच्या कायदेशीर शब्दांशिवाय आपले हक्क, सरकारी तक्रार निवारण आणि मोफत कायदेशीर मदत मिळवा.
+        </p>
+
+        <!-- Voice Assistant Box -->
+        <div class="voice-assistant-box">
+          <div class="mic-container">
+            <button class="mic-button" id="mic-btn" aria-label="Microphone Speech Recognition" title="Click to speak">
+              🎙️
+            </button>
+            <span class="mic-status-label" id="mic-status">माईक दाबा आणि आपली समस्या सांगा / Press mic and speak</span>
+          </div>
+
+          <div class="query-input-wrap">
+            <input 
+              type="text" 
+              id="chat-query-input" 
+              class="text-input" 
+              placeholder="उदा. माझ्या मालकाने दोन महिने पगार दिला नाही, मी काय करू?"
+              aria-label="Legal issue description"
+            />
+            <button class="btn-primary" id="ui-btn-ask" onclick="submitQuery()">
+              विचारा / शोध घ्या
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Container -->
+      <div id="query-result-container"></div>
+
+      <!-- Legal Categories Grid -->
+      <div style="margin-top: 2rem;">
+        <h3 id="ui-categories-title" style="font-size: 1.2rem; color: var(--primary); margin-bottom: 0.75rem;">
+          प्रमुख कायदेशीर समस्या निवडा:
+        </h3>
+        <div class="features-grid" id="categories-container">
+          <!-- Dynamically populated by rights.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: Explain My Document -->
+    <section id="document-tab" class="tab-content">
+      <div class="result-card" style="margin-top: 0;">
+        <h2 style="color: var(--primary); margin-bottom: 0.5rem;">📄 कायदेशीर कागदपत्र स्पष्टीकरण (Explain My Document)</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+          सरकारी नोटीस, न्यायालयाचे समन्स, कंपनीचे मेमो किंवा भाडेकरार समजून घ्या. महत्त्वाच्या तारखा, मुदत आणि कठीण कायदेशीर शब्दांचे सोपे अर्थ मिळवा.
+        </p>
+
+        <!-- Privacy Warning -->
+        <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 0.75rem 1rem; border-radius: 4px; font-size: 0.85rem; color: #1e40af; margin-bottom: 1.25rem;">
+          🔒 <strong>गोपनीयता सूचना:</strong> कागदपत्रातील बँक पासवर्ड, ओटीपी किंवा अनावश्यक वैयक्तिक गुप्त माहिती टाळण्याचा प्रयत्न करा.
+        </div>
+
+        <div class="form-group">
+          <label>नमुना नोटीस निवडा किंवा स्वतःचा मजकूर पेस्ट करा:</label>
+          <select id="sample-doc-select" onchange="onSampleDocSelected()">
+            <!-- Loaded via document.js -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>दस्तऐवज फाइल निवडा (Text, Image or PDF):</label>
+          <input type="file" id="doc-file-upload" onchange="handleFileUpload(event)" accept=".txt,.pdf,image/*">
+        </div>
+
+        <div class="form-group">
+          <label>कागदपत्राचा मजकूर (Document Text):</label>
+          <textarea id="doc-text-input" placeholder="कागदपत्रातील मजकूर येथे पेस्ट करा किंवा वरून नमुना नोटीस निवडा..." style="height: 180px;"></textarea>
+        </div>
+
+        <button class="btn-primary" onclick="analyzeDocument()">
+          🔍 दस्तऐवजाचे विश्लेषण करा (Analyze Document)
+        </button>
+
+        <div id="doc-analysis-result" style="margin-top: 1.5rem;"></div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Help Me Write a Complaint -->
+    <section id="complaint-tab" class="tab-content">
+      <div class="result-card" style="margin-top: 0;">
+        <h2 style="color: var(--primary); margin-bottom: 0.5rem;">✍️ वस्तुस्थितीदर्शक तक्रार मसुदा (Draft My Complaint)</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+          केवळ खरी वस्तुस्थिती नमूद करून औपचारिक तक्रार पत्र, ऑनलाइन पोर्टल संक्षिप्त मसुदा आणि पुरावे यादी तयार करा.
+        </p>
+
+        <div class="split-layout">
+          <!-- Left Column: Complainant & Opposite Party Details -->
+          <div>
+            <div class="form-group">
+              <label>तक्रारदाराचे पूर्ण नाव (Your Name):</label>
+              <input type="text" id="comp-name" placeholder="उदा. रुपेश तुकाराम पाटील">
+            </div>
+
+            <div class="form-group">
+              <label>तक्रारदाराचा पत्ता व जिल्हा (Your Address):</label>
+              <input type="text" id="comp-address" placeholder="उदा. भोसरी एमआयडीसी, पुणे - ४११०२६">
+            </div>
+
+            <div class="form-group">
+              <label>मोबाईल क्रमांक (Mobile Number):</label>
+              <input type="text" id="comp-phone" placeholder="उदा. ९८२२००११२२">
+            </div>
+
+            <div class="form-group">
+              <label>तक्रारीचा प्रकार (Matter Type):</label>
+              <select id="comp-type">
+                <option value="unpaid_wages">थकीत वेतन / रोजगार वाद (Unpaid Wages)</option>
+                <option value="consumer">ग्राहक तक्रार / सदोष वस्तू (Consumer Dispute)</option>
+                <option value="rental">भाडे व डिपॉझिट वाद (Tenancy / Deposit)</option>
+                <option value="general">इतर सामान्य तक्रार (General Grievance)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Right Column: Opposite Party & Facts -->
+          <div>
+            <div class="form-group">
+              <label>विरोधी पक्षाचे / आस्थापनेचे नाव (Opposite Party):</label>
+              <input type="text" id="comp-opp-name" placeholder="उदा. सनशाईन मॅन्युफॅक्चरिंग प्रा. लि.">
+            </div>
+
+            <div class="form-group">
+              <label>विरोधी पक्षाचा पत्ता (Opposite Party Address):</label>
+              <input type="text" id="comp-opp-address" placeholder="उदा. प्लॉट क्र. ५२, एमआयडीसी, पुणे">
+            </div>
+
+            <div class="form-group">
+              <label>संबंधित कालावधी किंवा तारखा (Dates):</label>
+              <input type="text" id="comp-dates" placeholder="उदा. ऑगस्ट व सप्टेंबर २०२६">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>नेमकी वस्तुस्थिती काय घडली? (What Happened - Facts):</label>
+          <textarea id="comp-facts" placeholder="थोडक्यात वस्तुस्थिती लिहा. उदा. मी २ महिने काम केले पण वेतन दिले नाही..."></textarea>
+        </div>
+
+        <div class="split-layout">
+          <div class="form-group">
+            <label>यापूर्वी आपण काय कृती केली? (Prior Action Taken):</label>
+            <input type="text" id="comp-prior-action" placeholder="उदा. मालकाला तोंडी व व्हॉट्सॲपवर विचारले पण प्रतिसाद नाही.">
+          </div>
+          <div class="form-group">
+            <label>आपली मागणी काय आहे? (Relief Requested):</label>
+            <input type="text" id="comp-relief" placeholder="उदा. माझे थकीत ४५,००० रुपये तात्काळ द्यावेत.">
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="generateComplaintDraft()">
+          📝 तक्रार मसुदा तयार करा (Generate Factual Complaint)
+        </button>
+
+        <div id="complaint-result-container" style="margin-top: 1.5rem;"></div>
+      </div>
+    </section>
+
+    <!-- TAB 4: Find Free Legal Help -->
+    <section id="legalaid-tab" class="tab-content">
+      <div class="result-card" style="margin-top: 0;">
+        <h2 style="color: var(--primary); margin-bottom: 0.5rem;">🏛️ मोफत विधी सेवा शोधा (Find Free Legal Help)</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+          विधी सेवा प्राधिकरण कायदा, १९८७ च्या कलम १२ अंतर्गत मोफत सरकारी वकील आणि कोर्ट फी माफीसाठी आपली पात्रता तपासा व अधिकृत कार्यालयाचा पत्ता शोधा.
+        </p>
+
+        <div class="split-layout">
+          <!-- Eligibility Calculator -->
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+            <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem;">
+              १. कायदेशीर पात्रता तपासा (Section 12 Eligibility)
+            </h3>
+
+            <div class="form-group">
+              <label>आपला प्रवर्ग (Category):</label>
+              <select id="aid-category">
+                <option value="woman">महिला (Woman - Automatic Eligibility Sec 12(c))</option>
+                <option value="industrial_workman">औद्योगिक कामगार / मजुरी (Industrial Workman Sec 12(e))</option>
+                <option value="sc_st">अनुसूचित जाती किंवा जमाती (SC / ST Sec 12(a))</option>
+                <option value="disabled">दिव्यांग व्यक्ती (Person with Disability Sec 12(d))</option>
+                <option value="low_income">कमी उत्पन्न असलेला नागरिक (Low Income Sec 12(h))</option>
+                <option value="child">बालक (Child below 18 years)</option>
+                <option value="custody">न्यायालयीन कोठडीत असलेली व्यक्ती (Person in Custody)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>वार्षिक कौटुंबिक उत्पन्न (Annual Income in Rs - Optional):</label>
+              <input type="number" id="aid-income" placeholder="उदा. 180000">
+            </div>
+
+            <button class="btn-primary" onclick="checkEligibility()" style="width: 100%; justify-content: center;">
+              पात्रता तपासा (Check Eligibility)
+            </button>
+
+            <div id="eligibility-result"></div>
+          </div>
+
+          <!-- District Office Finder -->
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+            <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem;">
+              २. जिल्हा विधी सेवा कार्यालय शोधा (Find DLSA)
+            </h3>
+
+            <div class="form-group">
+              <label>राज्य निवडा (State):</label>
+              <select id="aid-state">
+                <option value="Maharashtra" selected>महाराष्ट्र (Maharashtra)</option>
+                <option value="Delhi">दिल्ली (Delhi)</option>
+                <option value="Karnataka">कर्नाटक (Karnataka)</option>
+                <option value="Uttar Pradesh">उत्तर प्रदेश (Uttar Pradesh)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>जिल्हा निवडा (District):</label>
+              <select id="aid-district">
+                <option value="pune" selected>पुणे (Pune)</option>
+                <option value="mumbai">मुंबई शहर (Mumbai City)</option>
+                <option value="mumbai_suburban">मुंबई उपनगर (Mumbai Suburban)</option>
+                <option value="nagpur">नागपूर (Nagpur)</option>
+                <option value="nashik">नाशिक (Nashik)</option>
+                <option value="central_delhi">मध्य दिल्ली (Central Delhi)</option>
+                <option value="bangalore_urban">बंगळुरू शहर (Bengaluru Urban)</option>
+                <option value="lucknow">लखनौ (Lucknow)</option>
+              </select>
+            </div>
+
+            <button class="btn-secondary" onclick="searchDistrictAuthority()" style="width: 100%; justify-content: center;">
+              📍 अधिकृत पत्ता व फोन शोधा (Find Office)
+            </button>
+
+            <div id="district-contact-result"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: Live Hackathon Demos -->
+    <section id="demos-tab" class="tab-content">
+      <div class="demo-banner">
+        <h2 style="color: #3730a3; margin-bottom: 0.5rem;">🚀 हॅकाथॉन थेट प्रात्यक्षिक (Hackathon Demonstrations)</h2>
+        <p style="color: #4338ca; font-size: 0.95rem;">
+          खालील तीन वास्तववादी परिस्थितींपैकी कोणतीही एक निवडून न्याय साथीची संपूर्ण प्रक्रिया एका क्लिकवर तपासा:
+        </p>
+
+        <div class="features-grid" style="margin-top: 1.25rem;">
+          <!-- DEMO A -->
+          <div class="category-card" style="border: 2px solid #818cf8; background: #fff;">
+            <div class="cat-header">
+              <span class="cat-icon">💼</span>
+              <div class="cat-title">DEMO A: थकीत वेतन (Unpaid Wages)</div>
+            </div>
+            <p class="cat-desc" style="margin-bottom: 1rem;">
+              <strong>परिस्थिती:</strong> रुपेश पाटील (पुणे) - मालकाने २ महिन्यांपासून पगार दिला नाही. मराठी व्हॉइस असिस्टंट द्वारे हक्क समजून घेणे, कायदेशीर तरतुदी पाहणे आणि कामगार आयुक्त तक्रार मसुदा तयार करणे.
+            </p>
+            <button class="btn-demo" onclick="runDemo('demo_a')">
+              ▶️ Run Demo A (Unpaid Wages in Marathi)
+            </button>
+          </div>
+
+          <!-- DEMO B -->
+          <div class="category-card" style="border: 2px solid #818cf8; background: #fff;">
+            <div class="cat-header">
+              <span class="cat-icon">📑</span>
+              <div class="cat-title">DEMO B: सरकारी नोटीस समजून घेणे</div>
+            </div>
+            <p class="cat-desc" style="margin-bottom: 1rem;">
+              <strong>परिस्थिती:</strong> महानगरपालिकेची कलम ३५१ अंतर्गत कारणे दाखवा नोटीस. १५ दिवसांची मुदत, 'Ex-Parte' चा अर्थ आणि विधी सेवा वकिलांना विचारायचे ३ प्रश्न स्पष्ट करणे.
+            </p>
+            <button class="btn-demo" onclick="runDemo('demo_b')">
+              ▶️ Run Demo B (Municipal Notice Explainer)
+            </button>
+          </div>
+
+          <!-- DEMO C -->
+          <div class="category-card" style="border: 2px solid #818cf8; background: #fff;">
+            <div class="cat-header">
+              <span class="cat-icon">⚖️</span>
+              <div class="cat-title">DEMO C: मोफत विधी सेवा शोधणे</div>
+            </div>
+            <p class="cat-desc" style="margin-bottom: 1rem;">
+              <strong>परिस्थिती:</strong> सुनीता कांबळे (पुणे) - कलम १२(c) अन्वये महिला प्रवर्गातील स्वयंचलित मोफत वकील पात्रता आणि पुणे जिल्हा विधी सेवा प्राधिकरण (DLSA) संपर्क माहिती मिळवणे.
+            </p>
+            <button class="btn-demo" onclick="runDemo('demo_c')">
+              ▶️ Run Demo C (Free Legal Aid Discovery)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">न्याय साथी (Nyaya Sathi)</h4>
+        <p style="max-width: 450px;">
+          नागरिकांसाठी एआय-आधारित बहुभाषिक कायदेशीर माहिती आणि साक्षरता व्यासपीठ. सर्व अधिकृत माहिती भारत कोड, नालसा आणि संबंधित सरकारी मंत्रालयांवर आधारित आहे.
+        </p>
+      </div>
+      <div>
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">अधिकृत राष्ट्रीय हेल्पलाईन्स</h4>
+        <p>राष्ट्रीय आपत्कालीन सेवा: <strong>११२ (112)</strong></p>
+        <p>महिला हेल्पलाईन: <strong>१८१ (181)</strong></p>
+        <p>राष्ट्रीय विधी सेवा प्राधिकरण (NALSA): <strong>१५१०० (15100)</strong></p>
+        <p>सायबर आर्थिक फसवणूक: <strong>१९३० (1930)</strong></p>
+        <p>राष्ट्रीय ग्राहक हेल्पलाईन: <strong>१९१५ (1915)</strong></p>
+      </div>
+      <div>
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">अधिकृत पोर्टल दुवे</h4>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 0.35rem;">
+          <a href="https://www.indiacode.nic.in" target="_blank">India Code (Official Legislation)</a>
+          <a href="https://nalsa.gov.in" target="_blank">NALSA (Legal Services Authority)</a>
+          <a href="https://samadhan.labour.gov.in" target="_blank">Samadhan Portal (Labour Ministry)</a>
+          <a href="https://consumerhelpline.gov.in" target="_blank">National Consumer Helpline</a>
+          <a href="https://cybercrime.gov.in" target="_blank">National Cybercrime Portal</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+      Nyaya Sathi Prototype © 2026. Made for Civic Legal Empowerment in India.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/voice_assistant.js"></script>
+  <script src="/js/rights.js"></script>
+  <script src="/js/document.js"></script>
+  <script src="/js/complaint.js"></script>
+  <script src="/js/legalaid.js"></script>
+  <script src="/js/demos.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

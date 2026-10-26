@@ -1,0 +1,9 @@
+# Nyaya Sathi Dependencies
+# NOTE: The Nyaya Sathi core runtime is built using Python 3.12 Standard Library
+# (http.server, json, urllib, sqlite3, unittest) and requires ZERO external pip dependencies to run!
+#
+# Optional production packages (for production WSGI/ASGI deployments):
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pydantic>=2.6.0
+requests>=2.31.0
